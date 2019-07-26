@@ -1,0 +1,19 @@
+{
+  "name": "renode",
+  "version": "1.0.0",
+  "description": "A cli for creating boilerplate for React ❤️ + Node 🏬. 🚀",
+  "main": "bin/cli.js",
+  "bin": {
+    "renode": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "nodemon ./bin/cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.20.0"
+  }
+}

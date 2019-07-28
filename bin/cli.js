@@ -52,8 +52,11 @@ const copyRecursively = (from, to) => {
       // Check file is file or directory
       if (isFile(file)) {
 				// Copy file in a sync way
+				// Check if the file is ejs then need parse template out of it
 				if(path.extname(file.name) === '.ejs') {
 					const content = parseEjs(newFrom);
+					const mainFileName = file.name.slice(0, file.name.length - 4);
+					fs.writeFileSync(`${to}/${mainFileName}`, content);			
 				} else {
 					fs.copyFileSync(newFrom, newTo);
 				}

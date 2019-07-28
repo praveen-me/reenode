@@ -1,0 +1,28 @@
+h2 {
+	text-align: center;
+}
+
+/* float
+1 - right
+2 - left
+3 - none */
+
+/* clear
+1 - right
+2 - left
+3 - both  */
+
+/* Float Article Link: https://css-tricks.com/almanac/properties/f/float/ */
+
+
+img {
+	float: right;
+}
+
+.container,
+.container:after,
+.container:before {
+	content: '';
+	display: block;
+	clear: both;
+}

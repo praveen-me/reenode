@@ -28,59 +28,43 @@ const isFile = file => {
 // Need to make recursive function that take a source and copy everything recursively
 
 const copyRecursively = (from, to) => {
-  const files = fs.readdirSync(from, { withFileTypes: true });
+  // Make the destination directory
+  fs.mkdir(to, err => {
+    // Read file form the source folder
+    const files = fs.readdirSync(from, { withFileTypes: true });
 
-  files.forEach(file => {
-    if (isFile(file)) {
-      fs.copyFileSync(`${from}/${file.name}`, `${to}/${file.name}`);
-    } else {
-      fs.mkdir(`${to}/${file.name}`, err => {
-        console.log("here");
-        const newDirLink = `${from}/${file.name}`;
-        const newTargetDirectoryLink = `${to}/${file.name}`;
-        const filesInsideFolder = fs.readdirSync(newDirLink, {
-          withFileTypes: true
-        });
-        console.log(filesInsideFolder);
-        console.log(newDirLink);
-        filesInsideFolder.forEach(file =>
-          fs.copyFileSync(
-            `${newDirLink}/${file.name}`,
-            `${newTargetDirectoryLink}/${file.name}`
-          )
-        );
-      });
-    }
+    // Loop through the file and checking if type is file then just copy else repeat copyRecursively
+    files.forEach(file => {
+      // Check file is file or directory
+      if (isFile(file)) {
+        // Copy file in a sync way
+        fs.copyFileSync(`${from}/${file.name}`, `${to}/${file.name}`);
+      } else {
+        // Else create directory and repeat the procedure
+        // fs.mkdir(`${to}/${file.name}`, err => {
+        //   const newDirLink = `${from}/${file.name}`;
+        //   const newTargetDirectoryLink = `${to}/${file.name}`;
+        //   const filesInsideFolder = fs.readdirSync(newDirLink, {
+        //     withFileTypes: true
+        //   });
+        //   filesInsideFolder.forEach(file =>
+        //     fs.copyFileSync(
+        //       `${newDirLink}/${file.name}`,
+        //       `${newTargetDirectoryLink}/${file.name}`
+        //     )
+        //   );
+        // });
+
+        copyRecursively(`${from}/${file.name}`, `${to}/${file.name}`);
+      }
+    });
   });
 };
 
 const createTemplate = appName => {
   const currentDirectoryPath = process.cwd() + `/${appName}`;
-
   // 1 Make directory on the current path
-  fs.mkdir(currentDirectoryPath, err => {
-    // 2 - Read the targeted directory
-    // const files = fs.readdirSync(reactTemplatePath, { withFileTypes: true });
-    // files.forEach(file => {
-    //   // 3 - Copy each file to new directory
-    //   if (isFile(file)) {
-    //     // If it's a file then directory copy it
-    //     fs.copyFileSync(
-    //       reactTemplatePath + `/${file.name}`,
-    //       currentDirectoryPath + `/${file.name}`
-    //     );
-    //   } else {
-    // 		// Else read that folder again and copy files recursively
-    // 		const files
-    //   }
-    //   // console.log(file["[Symbol(type)]"]);
-    //   // console.log(file.isDirectory());
-    //   // console.log(reactTemplatePath + `/${file}`);
-    //   console.log(isFile(file));
-    // });
-    copyRecursively(reactTemplatePath, currentDirectoryPath);
-  });
-  // 3 Take all files from template and path in that particular directory
+  copyRecursively(reactTemplatePath, currentDirectoryPath);
 };
 
 const init = appName => {

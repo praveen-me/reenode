@@ -1,0 +1,30 @@
+*, 
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+.container {
+	height: 100vh;
+	background: skyblue;
+	position: relative;
+}
+
+
+/* left,
+right,
+bottom,
+left */
+
+.child {
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	background: green;
+	bottom: 0;
+	right: 0;
+}

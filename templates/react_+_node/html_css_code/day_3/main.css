@@ -1,0 +1,22 @@
+p {
+	display: inline-block;
+}
+
+.inline-block-div {
+	height: 100px;
+	width: 100px;
+	background-color: #aaa;
+	padding: 10px 5px;
+	border: 5px solid #000;
+	margin: 10px;
+	display: inline-block;
+	border-radius: 5px;
+}
+
+.circle {
+	display: inline-block;
+	background: red;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+}

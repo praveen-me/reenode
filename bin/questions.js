@@ -22,12 +22,6 @@ const questions = [
     name: "author",
     message: "Author Name:",
     default: "Nope! I'll add later."
-  },
-  {
-    type: "confirm",
-    name: "isEslintConfig",
-    message: "Include Eslint ?",
-    default: "n"
   }
 ];
 

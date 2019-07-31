@@ -7,7 +7,9 @@
     "dev:server": "nodemon ./server/index.js",
     "dev:client": "webpack --config webpack.dev.js",
     "start": "npm-run-all --parallel dev:*",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +17,8 @@
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "webpack": "^4.38.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -24,11 +27,14 @@
     "babel-loader": "^8.0.6",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.6.1",
     "npm-run-all": "^4.1.5",
-    "webpack": "^4.38.0",
+    "prettier": "^1.18.2",
     "webpack-cli": "^3.3.6"
   }
 }

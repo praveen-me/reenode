@@ -26,9 +26,9 @@ const isFile = file => {
 };
 
 const parseEjs = (filePath, data) => {
-	const fileContent = fs.readFileSync(filePath).toString();
-	return ejs.render(fileContent, reflections);
-}
+  const fileContent = fs.readFileSync(filePath).toString();
+  return ejs.render(fileContent, reflections);
+};
 
 /**
  * Copy files recursively from the source to destination
@@ -51,16 +51,15 @@ const copyRecursively = (from, to) => {
 
       // Check file is file or directory
       if (isFile(file)) {
-				// Copy file in a sync way
-				// Check if the file is ejs then need parse template out of it
-				if(path.extname(file.name) === '.ejs') {
-					const content = parseEjs(newFrom);
-					const mainFileName = file.name.slice(0, file.name.length - 4);
-					fs.writeFileSync(`${to}/${mainFileName}`, content);			
-				} else {
-					fs.copyFileSync(newFrom, newTo);
-				}
-				
+        // Copy file in a sync way
+        // Check if the file is ejs then need parse template out of it
+        if (path.extname(file.name) === ".ejs") {
+          const content = parseEjs(newFrom);
+          const mainFileName = file.name.slice(0, file.name.length - 4);
+          fs.writeFileSync(`${to}/${mainFileName}`, content);
+        } else {
+          fs.copyFileSync(newFrom, newTo);
+        }
       } else {
         // Repeat the procedure again
         copyRecursively(newFrom, newTo);
@@ -93,11 +92,13 @@ const init = appName => {
   console.log("Welcome to renode.🚀");
 
   inquirer.prompt(questions).then(answers => {
-		reflections = {
-			...answers,
-			appName
-		};
-    createTemplate(appName);
+    reflections = {
+      ...answers,
+      appName
+    };
+
+    console.log(reflections, "reflections");
+    // createTemplate(appName);
   });
 };
 

@@ -1,5 +1,7 @@
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const path = require('path');
+
+console.log('here');
 
 const config = {
   mode: 'development',
@@ -15,7 +17,14 @@ const config = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.scss|\.css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
+  },
+  devServer: {
+    index: '/',
   },
 };
 

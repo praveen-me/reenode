@@ -1,13 +1,7 @@
+<% if ( boilerplate !== 'React + React Router + Node' ) { %>
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../store/actions/todo.action';
-
-const Home = () => (
-  <div>
-    <h1>React Boilerplate</h1>
-    <h1>Welcome to React Boilerplate</h1>
-  </div>
-);
 
 const Home = ({ todos, dispatch }) => {
   const [todo, setTodo] = useState('');
@@ -39,3 +33,14 @@ function mapStateToProps({ todos }) {
 }
 
 export default connect(mapStateToProps)(Home);
+<% } else { %>
+import React from 'react';
+
+const Home = () => (
+  <div>
+    <h1>React Boilerplate</h1>
+    <h1>Welcome to React Boilerplate</h1>
+  </div>
+);
+export default Home;
+<% } %>

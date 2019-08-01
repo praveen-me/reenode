@@ -1,12 +1,15 @@
 import React from 'react';
+<% if ( boilerplate !== 'React + Node' ) {%>
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './sass/app.scss';
 
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
+<% } %>
+import './sass/app.scss';
 
+<% if ( boilerplate !== 'React + Node' ) {%>
 const App = () => (
   <Router>
     <Header />
@@ -17,5 +20,12 @@ const App = () => (
     </Switch>
   </Router>
 );
+<% } else { %>
+const App = () => {
+  return(
+    <h1>Welcome to React and Node boilerplate.</h1>
+  );
+}
+<% } %>
 
 export default App;

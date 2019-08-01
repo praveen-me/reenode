@@ -59,6 +59,9 @@ const copyRecursively = (from, to) => {
           const mainFileName = file.name.slice(0, file.name.length - 4);
           fs.writeFileSync(`${to}/${mainFileName}`, content);
         } else {
+
+          if(file.name === 'package-lock.json') return;
+
           fs.copyFileSync(newFrom, newTo);
         }
       } else {

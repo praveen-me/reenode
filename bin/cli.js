@@ -7,6 +7,7 @@ const inquirer = require("inquirer");
 const ejs = require("ejs");
 const { version } = require("./../package.json");
 const questions = require("./questions");
+const templates = require("./template-names");
 
 let reflections = {};
 
@@ -61,6 +62,18 @@ const copyRecursively = (from, to) => {
           fs.copyFileSync(newFrom, newTo);
         }
       } else {
+        const { boilerplate } = reflections;
+        // If some how node_modules and dist directory are left there
+        if (file.name === "node_modules" || file.name === "dist") return;
+
+        if (
+          ((templates.indexOf(boilerplate) === 0 ||
+            templates.indexOf(boilerplate) === 1) &&
+            file.name === "store") ||
+          (templates.indexOf(boilerplate) === 0 && file.name === "components")
+        )
+          return;
+
         // Repeat the procedure again
         copyRecursively(newFrom, newTo);
       }
@@ -97,8 +110,9 @@ const init = appName => {
       appName
     };
 
-    console.log(reflections, "reflections");
-    // createTemplate(appName);
+    // console.log(reflections, "reflections");
+    createTemplate(appName);
+    // console.log(templates.indexOf(reflections.boilerplate));
   });
 };
 

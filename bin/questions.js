@@ -1,15 +1,11 @@
+const templates = require("./template-names");
+
 const questions = [
   {
     type: "rawlist",
     name: "boilerplate",
     message: "Please choose your boilerplate 🏗:",
-    choices: [
-      "React + Node",
-      "React + React Router + Node",
-      "React + Redux + React Router + Node",
-      "React + Redux + React Router + Node + MongoDB",
-      "React + Redux + React Router + WordPress"
-    ]
+    choices: [...templates]
   },
   {
     type: "input",

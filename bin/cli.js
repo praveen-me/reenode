@@ -58,11 +58,13 @@ const copyRecursively = (from, to) => {
           const content = parseEjs(newFrom);
           const mainFileName = file.name.slice(0, file.name.length - 4);
           fs.writeFileSync(`${to}/${mainFileName}`, content);
-        } else {
 
-          if(file.name === 'package-lock.json') return;
+          console.log(`Created ${to}/${mainFileName}. 👨‍🔧`);
+        } else {
+          if (file.name === "package-lock.json") return;
 
           fs.copyFileSync(newFrom, newTo);
+          console.log(`Created ${newTo}. 👨‍🔧`);
         }
       } else {
         const { boilerplate } = reflections;
@@ -94,6 +96,11 @@ const copyRecursively = (from, to) => {
 const createTemplate = appName => {
   const currentDirectoryPath = process.cwd() + `/${appName}`;
   // 1 Make directory on the current path
+  console.log(
+    `\n---------------------------------------------------\n
+               Generating Boilerplate
+    \n--------------------------------------------------- \n`
+  );
   copyRecursively(reactTemplatePath, currentDirectoryPath);
 };
 
@@ -113,9 +120,7 @@ const init = appName => {
       appName
     };
 
-    // console.log(reflections, "reflections");
     createTemplate(appName);
-    // console.log(templates.indexOf(reflections.boilerplate));
   });
 };
 

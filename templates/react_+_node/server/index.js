@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-const ejs = require('ejs');
+const bodyParser = require('body-parser');
+const initDB = require('./db/index');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -11,9 +12,15 @@ app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, './views'));
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+// Essential Middlewares
+app.use(bodyParser.json());
+
+// Initialize the Database
+initDB('sample');
+
+// Routes
+app.use('/', require('./routes/navigation'));
+app.use('/api/v1', require('./routes/api'));
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);

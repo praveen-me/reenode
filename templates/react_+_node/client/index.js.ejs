@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './src/App';
 
-<% if ( boilerplate === 'React + Redux + React Router + Node' ) {%>
+<% if ( boilerplate === 'React + Redux + React Router + Node' || boilerplate === 'React + Redux + React Router + Node + MongoDB' ) {%>
 import { Provider } from 'react-redux';
 import store from './src/store/store';
 <% } %>
 
-<% if ( boilerplate === 'React + Redux + React Router + Node' ) {%>
+<% if ( boilerplate === 'React + Redux + React Router + Node' || boilerplate === 'React + Redux + React Router + Node + MongoDB' ) {%>
 ReactDOM.render(
   <Provider store={store}>
     <App />
@@ -15,5 +15,5 @@ ReactDOM.render(
   document.getElementById('root')
 );
 <% } else { %>
-ReactDOM.render(<App />document.getElementById('root'));
+ReactDOM.render(<App />,document.getElementById('root'));
 <% } %>

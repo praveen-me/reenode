@@ -59,12 +59,12 @@ const copyRecursively = (from, to) => {
           const mainFileName = file.name.slice(0, file.name.length - 4);
           fs.writeFileSync(`${to}/${mainFileName}`, content);
 
-          console.log(`Created ${to}/${mainFileName}. 👨‍🔧`);
+          console.log(`Created ${(to + "/" + mainFileName).replace(new RegExp(process.cwd(), 'g'), '')} 👻`);
         } else {
           if (file.name === "package-lock.json") return;
 
           fs.copyFileSync(newFrom, newTo);
-          console.log(`Created ${newTo}. 👨‍🔧`);
+          console.log(`Created ${newTo.replace(new RegExp(process.cwd(), 'g'), '')} 💩`);
         }
       } else {
         const { boilerplate } = reflections;
@@ -75,7 +75,13 @@ const copyRecursively = (from, to) => {
           ((templates.indexOf(boilerplate) === 0 ||
             templates.indexOf(boilerplate) === 1) &&
             file.name === "store") ||
-          (templates.indexOf(boilerplate) === 0 && file.name === "components")
+          (templates.indexOf(boilerplate) === 0 &&
+            file.name === "components") ||
+          (templates.indexOf(boilerplate) === 2 &&
+            file.name === "controllers") ||
+          (templates.indexOf(boilerplate) === 2 && file.name === "db") ||
+          (templates.indexOf(boilerplate) === 2 && file.name === "models") ||
+          (templates.indexOf(boilerplate) === 2 && file.name === "routes")
         )
           return;
 

@@ -4,7 +4,7 @@
   "description": "<%- description -%>",
   "main": "./client/index.js",
   "scripts": {
-    "dev:server": "nodemon ./server/index.js",
+    "dev:server": "nodemon ./index.js",
     "dev:client": "webpack --config webpack.dev.js --watch",
     "start": "npm-run-all --parallel dev:*",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,12 +21,17 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6"<% if ( boilerplate === 'React + React Router + Node' ) {%>,
     "react-router-dom": "^5.0.1"
-    <% } %><% if ( boilerplate === 'React + Redux + React Router + Node' ) {%>,
+    <% } else if ( boilerplate === 'React + Redux + React Router + Node' ) {%>,
     "react-router-dom": "^5.0.1",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
-    <% } %>
+    <% } else if ( boilerplate === 'React + Redux + React Router + Node + MongoDB' ) {%>,
+    "mongoose": "^5.6.8",
+    "react-router-dom": "^5.0.1",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"<% } %>
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

@@ -1,0 +1,32 @@
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use('/', express.static(path.join(__dirname, './dist')));
+
+app.set('view engine', 'ejs');
+
+app.set('views', path.join(__dirname, './server/views'));
+
+// Navigation Routes
+app.use('/', require('./server/routes/navigation'));
+
+<% if ( boilerplate === 'React + Redux + React Router + Node + MongoDB' ) {%>
+const bodyParser = require('body-parser');
+const initDB = require('./server/db/index');
+
+// Essential Middlewares
+app.use(bodyParser.json());
+
+// Initialize the Database
+initDB('sample');
+
+// API Routes
+app.use('/api/v1', require('./server/routes/api'));
+<% } %>
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on ${PORT}`);
+});

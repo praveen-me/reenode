@@ -52,16 +52,23 @@ const copyRecursively = (from, to) => {
 
       // Check file is file or directory
       if (isFile(file)) {
+        
         // Copy file in a sync way
         // Check if the file is ejs then need parse template out of it
         if (path.extname(file.name) === ".ejs") {
-          const content = parseEjs(newFrom);
           const mainFileName = file.name.slice(0, file.name.length - 4);
+
+          if (file.name === "index.ejs.ejs" ) {
+            fs.copyFileSync(newFrom, `${to}/${mainFileName}`);
+            return;
+          } 
+          
+          const content = parseEjs(newFrom);
           fs.writeFileSync(`${to}/${mainFileName}`, content);
 
           console.log(`Created ${(to + "/" + mainFileName).replace(new RegExp(process.cwd(), 'g'), '')} 👻`);
         } else {
-          if (file.name === "package-lock.json") return;
+          if (file.name === "package-lock.json" ) return;
 
           fs.copyFileSync(newFrom, newTo);
           console.log(`Created ${newTo.replace(new RegExp(process.cwd(), 'g'), '')} 💩`);

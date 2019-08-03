@@ -17,3 +17,9 @@ ReactDOM.render(
 <% } else { %>
 ReactDOM.render(<App />,document.getElementById('root'));
 <% } %>
+
+// Add in ejs according to the development mode or production mode
+if (module.hot) {
+  module.hot.accept();
+}
+

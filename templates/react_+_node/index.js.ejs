@@ -1,6 +1,14 @@
 const express = require('express');
 const path = require('path');
+const mode = process.env.NODE_ENV;
+const webpackSetup = require('./build-utils/index');
+
 const app = express();
+
+if (mode === 'development') {
+  app.use('/', express.static(__dirname));
+  webpackSetup(app);
+}
 
 app.use('/', express.static(path.join(__dirname, './dist')));
 

@@ -1,75 +1,98 @@
+/* eslint global-require: "off" */
+
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
 
-const mode = process.env.NODE_ENV;
-
-// const config = {
-//   mode: 'development',
-//   entry: './client/index.js',
-//   target: 'web',
-//   output: {
-//     filename: 'bundle.js',
-//     path: path.resolve(__dirname, 'public'),
-//   },
-//   module: {
-//     rules: [
-//       {
-//         test: /\.js?$/,
-//         loader: 'babel-loader',
-//         exclude: /node_modules/,
-//       },
-//     ],
-//   },
-//   plugins: [new webpack.ProgressPlugin()],
-// };
-
-// module.exports = merge(config, {
-//   module: {
-//     rules: [
-//       {
-//         test: /\.scss|\.css$/,
-//         use: ['style-loader', 'css-loader', 'sass-loader'],
-//       },
-//     ],
-//   },
-// });
-
-// console.log(path.resolve(__dirname, './server/public'));
+const modeConfig = myMode => require(`./build-utils/webpack.${myMode}`);
 
 module.exports = ({ mode }) =>
-  merge({
-    mode,
-    entry:
-      mode === 'development'
-        ? [
-            'webpack-hot-middleware/client?path=/__webpack_hmr',
-            './client/index.js',
-          ]
-        : './client/index.js',
-    target: 'web',
-    // externals: [nodeExternals()], // Need this to avoid error when working with Express
-    module: {
-      rules: [
-        {
-          test: /\.js?$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-        },
-        {
-          test: /\.scss|\.css$/,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
-        },
-      ],
+  merge(
+    {
+      mode,
+      entry:
+        mode === 'development'
+          ? [
+              'webpack-hot-middleware/client?path=/__webpack_hmr',
+              './client/index.js',
+            ]
+          : './client/index.js',
+      target: 'web',
+      module: {
+        rules: [
+          {
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/,
+          },
+          {
+            test: /\.(eot|otf|ttf|woff|woff2)$/,
+            use: 'file-loader',
+          },
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: 'svg-url-loader',
+                options: {
+                  // Inline files smaller than 10 kB
+                  limit: 10 * 1024,
+                  noquotes: true,
+                },
+              },
+            ],
+          },
+          {
+            test: /\.(jpg|png|gif)$/,
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  // Inline files smaller than 10 kB
+                  limit: 10 * 1024,
+                },
+              },
+              {
+                loader: 'image-webpack-loader',
+                options: {
+                  mozjpeg: {
+                    enabled: false,
+                    // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
+                    // Try enabling it in your environment by switching the config to:
+                    // enabled: true,
+                    // progressive: true,
+                  },
+                  gifsicle: {
+                    interlaced: false,
+                  },
+                  optipng: {
+                    optimizationLevel: 7,
+                  },
+                  pngquant: {
+                    quality: '65-90',
+                    speed: 4,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            test: /\.(mp4|webm)$/,
+            use: {
+              loader: 'url-loader',
+              options: {
+                limit: 10000,
+              },
+            },
+          },
+        ],
+      },
+      output: {
+        publicPath: '/',
+        path: path.resolve(__dirname, './build/'),
+        filename: 'bundle.js',
+      },
+      plugins: [new webpack.ProgressPlugin()],
     },
-    output: {
-      publicPath: '/',
-      path: path.resolve(__dirname, './public/js'),
-      filename: 'bundle.js',
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.ProgressPlugin(),
-    ],
-  });
+    modeConfig(mode)
+  );

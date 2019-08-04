@@ -5,12 +5,12 @@
   "main": "./client/index.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js",
-    "dev": "NODE_ENV=development nodemon ./index.js",
+    "dev": "NODE_ENV=development nodemon ./server/index.js",
     "build": "npm run webpack -- --env.mode production",
-    "start": "NODE_ENV=production node ./index.js",
+    "start": "NODE_ENV=production nodemon ./server/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "node:inspect": "node inspect ./index.js"
+    "node:inspect": "node inspect ./server/index.js"
   },
   "author": "<%- author -%>",
   "license": "MIT",
@@ -39,6 +39,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "compression-webpack-plugin": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
@@ -47,12 +48,18 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.6.1",
+    "file-loader": "^4.1.0",
+    "image-webpack-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "sass-loader": "^7.1.0",
+    "svg-url-loader": "^3.0.0",
+    "url-loader": "^2.1.0",
     "webpack-cli": "^3.3.6",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-hot-middleware": "^2.25.0",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }

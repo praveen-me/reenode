@@ -54,6 +54,8 @@
         "props": false
       }
     ],
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": 0,
     "no-console": 0,
     "import/prefer-default-export": 0,
     "import": 0,

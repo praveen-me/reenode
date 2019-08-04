@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path');
+const chalk = require('chalk');
+const ip = require('ip');
+
 const mode = process.env.NODE_ENV;
 const webpackSetup = require('../build-utils/index');
 
@@ -38,5 +41,11 @@ app.use('/api/v1', require('./routes/api'));
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on ${PORT}`);
+  console.log(`\nServer started ! ${chalk.green('✓')} \n`)
+  console.log(chalk.bold('Access Urls:'));
+  console.log(chalk.bold('-----------------------------------'));
+  console.log(`Localhost: ${chalk.magenta(`http://localhost:${PORT}`)}`);
+  console.log(`      Lan: ${chalk.magenta(`http://${ip.address()}:${PORT}`)}`);
+  console.log(chalk.bold('-----------------------------------'));
+  console.log(chalk.italic.red(`Press Ctrl/Cmd + C to stop.\n`));
 });

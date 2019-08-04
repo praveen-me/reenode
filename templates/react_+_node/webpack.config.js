@@ -92,7 +92,6 @@ module.exports = ({ mode }) =>
         path: path.resolve(__dirname, './build/'),
         filename: 'bundle.js',
       },
-      plugins: [new webpack.ProgressPlugin()],
     },
     modeConfig(mode)
   );

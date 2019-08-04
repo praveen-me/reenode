@@ -5,9 +5,10 @@
   "main": "./client/index.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js",
-    "dev": "NODE_ENV=development nodemon ./server/index.js",
+    "server": "nodemon --quiet ./server/index.js",
+    "dev": "NODE_ENV=development npm run server",
     "build": "npm run webpack -- --env.mode production",
-    "start": "NODE_ENV=production nodemon ./server/index.js",
+    "start": "NODE_ENV=production npm run server",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "node:inspect": "node inspect ./server/index.js"
@@ -15,6 +16,8 @@
   "author": "<%- author -%>",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.4.2",
+    "ip": "^1.1.5",
     "webpack": "^4.38.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",

@@ -7,7 +7,7 @@ module.exports = dbName => {
     { useNewUrlParser: true },
     err => {
       if (err) throw err;
-      console.log(`Connected to database: ${dbName}`);
+      console.log(`\nConnected to database: ${dbName}\n`);
     }
   );
 };

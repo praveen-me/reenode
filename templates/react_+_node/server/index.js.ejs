@@ -1,20 +1,22 @@
 const express = require('express');
 const path = require('path');
 const mode = process.env.NODE_ENV;
-const webpackSetup = require('./build-utils/index');
+const webpackSetup = require('../build-utils/index');
 
 const app = express();
 
 if (mode === 'development') {
   app.use('/', express.static(__dirname));
   webpackSetup(app);
+} else if (mode === 'production') {
+  app.use('/', express.static('build'));
 }
 
 app.use('/', express.static(path.join(__dirname, './dist')));
 
 app.set('view engine', 'ejs');
 
-app.set('views', path.join(__dirname, './server/views'));
+app.set('views', path.join(__dirname, './views'));
 
 // Navigation Routes
 app.use('/', require('./server/routes/navigation'));

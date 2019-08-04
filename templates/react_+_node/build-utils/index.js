@@ -7,16 +7,13 @@ const webpackConfig = require('./../webpack.config')({
 
 const compiler = webpack(webpackConfig);
 
-console.log(webpackConfig.output.publicPath);
-
 module.exports = app => {
   app.use(
     require('webpack-dev-middleware')(compiler, {
-      // logLevel: 'warn',
+      logLevel: 'warn',
       publicPath: webpackConfig.output.publicPath,
-      // silent: true,
-      // stats: true,
-      noInfo: false,
+      silent: true,
+      stats: true,
     })
   );
 

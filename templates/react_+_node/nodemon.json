@@ -1,3 +1,4 @@
 {
-  "watch": ["/server"]
+  "watch": ["./server/*"],
+  "ignore": ["./client/*", "./buid-utils/*"]
 }

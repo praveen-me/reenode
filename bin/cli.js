@@ -121,14 +121,14 @@ const copyRecursively = (from, to) => {
  */
 const welcomeMsg = appName => {
   console.log(
-    `${chalk.bold("Boilerplate is generated. \nRun ")} ${chalk.bold.cyan(
+    `${chalk.bold("Boilerplate generated. \nRun ")} ${chalk.bold.cyan(
       `cd ${appName} && npm run dev`
-    )} ${chalk.bold(`for starting dev server. \n`)}`
+    )} ${chalk.bold(`for starting dev server. \nLet's start building 🏗.`)}`
   );
   console.log(
     chalk
       .hex("#fdf39f")
-      .bold("\n🕸  With Great Power Comes Great Devonsibility 🚀\n")
+      .bold("\n🕸 With Great Power Comes Great Devonsibility 🚀\n")
   );
 };
 
@@ -191,7 +191,7 @@ program.on("--help", () => {
   console.log(
     chalk
       .hex("#fdf39f")
-      .bold("\n🕸  With Great Power Comes Great Devonsibility 🕷 \n")
+      .bold("\n🕸  With Great Power Comes Great Devosibility 🕷 \n")
   );
 });
 

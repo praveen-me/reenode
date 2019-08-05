@@ -1,12 +1,13 @@
 /* eslint global-require: "off" */
 
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const path = require('path');
 
 const modeConfig = myMode => require(`./build-utils/webpack.${myMode}`);
+const presetConfig = preset =>
+  require(`./build-utils/presets/webpack.preset.${preset}`);
 
-module.exports = ({ mode }) =>
+module.exports = ({ mode, preset } = { mode: 'production', preset: '' }) =>
   merge(
     {
       mode,
@@ -93,5 +94,6 @@ module.exports = ({ mode }) =>
         filename: 'bundle.js',
       },
     },
-    modeConfig(mode)
+    modeConfig(mode),
+    preset ? presetConfig(preset) : {}
   );

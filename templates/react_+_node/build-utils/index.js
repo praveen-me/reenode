@@ -1,8 +1,12 @@
 /* eslint global-require: "off" */
 
 const webpack = require('webpack');
+
+const { NODE_ENV, preset } = process.env;
+
 const webpackConfig = require('./../webpack.config')({
-  mode: process.env.NODE_ENV,
+  mode: NODE_ENV,
+  preset,
 });
 
 const compiler = webpack(webpackConfig);

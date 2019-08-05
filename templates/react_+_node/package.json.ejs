@@ -7,6 +7,7 @@
     "webpack": "webpack --config webpack.config.js",
     "server": "nodemon --quiet ./server/index.js",
     "dev": "NODE_ENV=development npm run server",
+    "dev:analyze": "NODE_ENV=development preset=analyze npm run server",
     "build": "npm run webpack -- --env.mode production",
     "start": "NODE_ENV=production npm run server",
     "lint": "eslint .",

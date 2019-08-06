@@ -4,7 +4,7 @@
   "description": "A cli for creating boilerplate for React ❤️ + Node 🏬. 🚀",
   "main": "bin/cli.js",
   "bin": {
-    "renode": "bin/cli.js"
+    "reenode": "bin/cli.js"
   },
   "scripts": {
     "start": "node ./bin/cli.js",

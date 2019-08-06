@@ -119,10 +119,10 @@ const copyRecursively = (from, to) => {
  *
  * @return {void}
  */
-const welcomeMsg = appName => {
+const welcomeMsg = (appName, pkgManager) => {
   console.log(
     `${chalk.bold("Boilerplate generated. \nRun ")} ${chalk.bold.cyan(
-      `cd ${appName} && npm run dev`
+      `cd ${appName} && ${pkgManager === "yarn" ? "yarn" : "npm run"} dev`
     )} ${chalk.bold(`for starting dev server. \nLet's start building 🏗.`)}`
   );
   console.log(
@@ -174,14 +174,16 @@ const init = async appName => {
     console.log(chalk.bold(`\nWait untill node_modules install...\n`));
 
     exec(
-      `cd ${process.cwd()}/${appName} && npm i && cd ..`,
+      `cd ${process.cwd()}/${appName} && ${
+        reflections.pkgManager
+      } install && cd ..`,
       (err, stderr, stdout) => {
         if (err) {
           console.log(chalk.red(`\n🐞 ${err} \n`));
         }
 
         console.log(stdout);
-        welcomeMsg(appName);
+        welcomeMsg(appName, reflections.pkgManager);
       }
     );
   }

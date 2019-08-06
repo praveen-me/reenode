@@ -1,8 +1,8 @@
-# renode
+# reenode
 
-🔥 A **CLI** for generating React + Node boilerplates 🚀 with handful configurations. **renode** helps you to create boilerplates with different configurations such as **react-router**, **redux** and **MongoDB**.
+🔥 A **CLI** for generating React + Node boilerplates 🚀 with handful configurations. **reenode** helps you to create boilerplates with different configurations such as **react-router**, **redux** and **MongoDB**.
 
-![](https://img.shields.io/npm/v/renode.svg)
+![](https://img.shields.io/npm/v/reenode.svg)
 
 # Demo
 
@@ -19,14 +19,14 @@ Every boilerplate container three main folders: <br>
 # Install
 
 ```
-npm install -g renode
-yarn global add renode
+npm install -g reenode
+yarn global add reenode
 ```
 
 # Usage
 
 # License
 
-![License](https://img.shields.io/npm/l/renode)
+![License](https://img.shields.io/npm/l/reenode)
 
 - [MIT](https://en.wikipedia.org/wiki/MIT_License)

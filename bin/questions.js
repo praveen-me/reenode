@@ -18,6 +18,12 @@ const questions = [
     name: "author",
     message: "Author Name:",
     default: "Nope! I'll add later."
+  },
+  {
+    type: "rawlist",
+    name: "pkgManager",
+    message: "Package Manager:",
+    choices: ["npm", "yarn"]
   }
 ];
 

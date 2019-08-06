@@ -5,11 +5,12 @@
   "main": "./client/index.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js",
-    "server": "nodemon --quiet ./server/index.js",
-    "dev": "NODE_ENV=development npm run server",
+    "server:dev": "nodemon --quiet ./server/index.js",
+    "server:prod": "node ./server/index.js"
+    "dev": "NODE_ENV=development npm run server:dev",
     "dev:analyze": "NODE_ENV=development preset=analyze npm run server",
     "build": "npm run webpack -- --env.mode production",
-    "start": "NODE_ENV=production npm run server",
+    "start": "NODE_ENV=production npm run server:prod",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "node:inspect": "node inspect ./server/index.js"

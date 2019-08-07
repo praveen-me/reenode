@@ -14,8 +14,8 @@ let error = false;
 let reflections = {};
 
 // Current working directory
-const templatePath = path.join(__dirname, `../templates`);
-const reactTemplatePath = templatePath + "/react_+_node";
+const templatePath = path.join(__dirname, `../template`);
+// const reactTemplatePath = templatePath + "/react_+_node";
 
 /**
  * Check if the particular file is actual file or a folder
@@ -148,7 +148,7 @@ const createTemplate = appName => {
     \n--------------------------------------------------- \n`
     )
   );
-  copyRecursively(reactTemplatePath, currentDirectoryPath);
+  copyRecursively(templatePath, currentDirectoryPath);
 };
 
 /**
@@ -178,12 +178,13 @@ const init = async appName => {
         reflections.pkgManager
       } install && cd ..`,
       (err, stderr, stdout) => {
+        const output = stdout;
         if (err) {
           console.log(chalk.red(`\n🐞 ${err} \n`));
         }
         
         exec(`cd ${process.cwd()}/${appName} && npm run prettier:server && npm run prettier:client && cd ..`, () => {
-          console.log(stdout);
+          console.log(output);
           welcomeMsg(appName, reflections.pkgManager);
         });
 

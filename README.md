@@ -36,7 +36,7 @@ reenode create project-name
 - Hot Module Replacement in client-side in dev mode.
 - Live server reloading using `nodemon` in dev mode.
 - Different boilerplates generation.
-- [`eslint`](https://eslint.org/) and [`prittier`](https://prettier.io/) setup.
+- [`eslint`](https://eslint.org/) and [`prettier`](https://prettier.io/) setup.
 
 ### Setup for ESlint + Pritter + VS Code:
 

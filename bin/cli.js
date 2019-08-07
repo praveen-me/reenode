@@ -181,9 +181,12 @@ const init = async appName => {
         if (err) {
           console.log(chalk.red(`\n🐞 ${err} \n`));
         }
+        
+        exec(`cd ${process.cwd()}/${appName} && npm run prettier:server && npm run prettier:client && cd ..`, () => {
+          console.log(stdout);
+          welcomeMsg(appName, reflections.pkgManager);
+        });
 
-        console.log(stdout);
-        welcomeMsg(appName, reflections.pkgManager);
       }
     );
   }

@@ -1,43 +1,39 @@
-# reenode
+<h1 align="center">Welcome to reenode 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://twitter.com/am_pra_veen">
+    <img alt="Twitter: am_pra_veen" src="https://img.shields.io/twitter/follow/am_pra_veen.svg?style=social" target="_blank" />
+  </a>
+</p>
 
-🔥 A **CLI** for generating React + Node boilerplates 🚀 with handful configurations. **reenode** helps you to create boilerplates with different configurations such as **react-router**, **redux** and **MongoDB**.
+> 🔥 A **CLI** for generating React + Node boilerplates 🚀 with handful configurations. **reenode** helps you to create boilerplates with different configurations such as **react-router**, **redux** and **MongoDB**.
 
-![](https://img.shields.io/npm/v/reenode.svg)
+### 🏠 [Homepage](https://github.com/praveen-me/reenode)
 
-# Demo 🎥
+## Demo 🎥
 
 ![GIF](/assets/reenode.gif)
 
-# Install
+## Install
 
-```
+```sh
 npm install -g reenode
 yarn global add reenode
 ```
 
-# Usage
-
+## Usage
 - `create [app-name]`: create command helps you to create boilerplate that you want. Just run: `reenode create my-app`
 - `--help | -h`: Helps you to get help about `reenode`.
 - `--version | -v`: Gives current version of `reenode`.
 
-# Introduction
-
-Every boilerplate container three main folders: <br>
-**Note:** Feel free to edit files according to your need.
-
-- `client` : This folder contains all the code related to client such as react, redux, react-router, etc.
-- `server` : This folder contains all the code related to server such as node, express, mongodb.
-- `build-utils` : This folder contains all the configuration related to webpack.
-
-# Features
+## Features
 
 - Hot Module Replacement in client-side in dev mode.
 - Live server reloading using `nodemon` in dev mode.
 - Different boilerplates generation.
 - [`eslint`](https://eslint.org/) and [`prittier`](https://prettier.io/) setup.
 
-## Setup for ESlint + Pritter + VS Code:
+### Setup for ESlint + Pritter + VS Code:
 
 - Install [ESLint Extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 - Install [Priettier Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
@@ -49,8 +45,29 @@ Every boilerplate container three main folders: <br>
   "editor.formatOnSave": true,
 ```
 
-# License
+## Introduction
 
-![License](https://img.shields.io/npm/l/reenode)
+Every boilerplate container three main folders: <br>
+**Note:** Feel free to edit files according to your need.
 
-- [MIT](https://en.wikipedia.org/wiki/MIT_License)
+- `client` : This folder contains all the code related to client such as react, redux, react-router, etc.
+- `server` : This folder contains all the code related to server such as node, express, mongodb.
+- `build-utils` : This folder contains all the configuration related to webpack.
+
+## Author
+
+👤 **Praveen Kumar Saini**
+
+* Twitter: [@am_pra_veen](https://twitter.com/am_pra_veen)
+* Github: [@praveen-me](https://github.com/praveen-me)
+
+## 📝 License
+Copyright © 2019 Praveen Kumar Saini.
+This project is [MIT](https://github.com/praveen/reenode/blob/master/LICENSE) licensed.
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

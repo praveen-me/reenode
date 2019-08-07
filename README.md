@@ -22,9 +22,14 @@ yarn global add reenode
 ```
 
 ## Usage
-- `create [app-name]`: create command helps you to create boilerplate that you want. Just run: `reenode create my-app`
+- `create [app-name]`: helps to create boilerplate that you want. Just run: `reenode create my-app`
 - `--help | -h`: Helps you to get help about `reenode`.
 - `--version | -v`: Gives current version of `reenode`.
+
+You can simply create a project by running:
+```
+reenode create project-name
+```
 
 ## Features
 
@@ -62,8 +67,8 @@ Every boilerplate container three main folders: <br>
 * Github: [@praveen-me](https://github.com/praveen-me)
 
 ## 📝 License
-Copyright © 2019 Praveen Kumar Saini.
-This project is [MIT](https://github.com/praveen/reenode/blob/master/LICENSE) licensed.
+Copyright © 2019 Praveen Kumar Saini. <br/>
+This project is [MIT](https://github.com/praveen-me/reenode/blob/master/LICENSE) licensed.
 
 ## Show your support
 

@@ -13,9 +13,21 @@ const exec = require("child_process").exec;
 let error = false;
 let reflections = {};
 
+const emojiCollection = [
+  "😁",
+  "🔥",
+  "🏗",
+  "😤",
+  "🐞",
+  "☠️",
+  "💀",
+  "🐳",
+  "🍗",
+  "✈️"
+];
+
 // Current working directory
 const templatePath = path.join(__dirname, `../template`);
-// const reactTemplatePath = templatePath + "/react_+_node";
 
 /**
  * Check if the particular file is actual file or a folder
@@ -31,6 +43,14 @@ const isFile = file => {
 const parseEjs = (filePath, data) => {
   const fileContent = fs.readFileSync(filePath).toString();
   return ejs.render(fileContent, reflections);
+};
+
+const fileCreationMsg = fileName => {
+  console.log(
+    `Created ${fileName} ${
+      emojiCollection[Math.ceil(Math.random() * emojiCollection.length - 1)]
+    }`
+  );
 };
 
 /**
@@ -69,25 +89,26 @@ const copyRecursively = (from, to) => {
 
         if (file.name === "index.ejs.ejs") {
           fs.copyFileSync(newFrom, `${to}/${mainFileName}`);
-          return;
+          fileCreationMsg(
+            (to + "/" + mainFileName).replace(
+              new RegExp(process.cwd(), "g"),
+              ""
+            )
+          );
+        } else {
+          const content = parseEjs(newFrom);
+          fs.writeFileSync(`${to}/${mainFileName}`, content);
         }
-
-        const content = parseEjs(newFrom);
-        fs.writeFileSync(`${to}/${mainFileName}`, content);
-
-        console.log(
-          `Created ${(to + "/" + mainFileName).replace(
-            new RegExp(process.cwd(), "g"),
-            ""
-          )} 👻`
+        fileCreationMsg(
+          (to + "/" + mainFileName).replace(new RegExp(process.cwd(), "g"), "")
         );
+
+        return;
       } else {
         if (file.name === "package-lock.json") return;
 
         fs.copyFileSync(newFrom, newTo);
-        console.log(
-          `Created ${newTo.replace(new RegExp(process.cwd(), "g"), "")} 💩`
-        );
+        fileCreationMsg(newTo.replace(new RegExp(process.cwd(), "g"), ""));
       }
     } else {
       const { boilerplate } = reflections;
@@ -99,10 +120,10 @@ const copyRecursively = (from, to) => {
           templates.indexOf(boilerplate) === 1) &&
           file.name === "store") ||
         (templates.indexOf(boilerplate) === 0 && file.name === "components") ||
-        (templates.indexOf(boilerplate) === 2 && file.name === "controllers") ||
-        (templates.indexOf(boilerplate) === 2 && file.name === "db") ||
-        (templates.indexOf(boilerplate) === 2 && file.name === "models") ||
-        (templates.indexOf(boilerplate) === 2 && file.name === "routes")
+        (templates.indexOf(boilerplate) !== 3 && file.name === "controllers") ||
+        (templates.indexOf(boilerplate) !== 3 && file.name === "db") ||
+        (templates.indexOf(boilerplate) !== 3 && file.name === "models") ||
+        (templates.indexOf(boilerplate) !== 3 && file.name === "routes")
       )
         return;
 
@@ -174,20 +195,20 @@ const init = async appName => {
     console.log(chalk.bold(`\nWait untill node_modules install...\n`));
 
     exec(
-      `cd ${process.cwd()}/${appName} && ${
-        reflections.pkgManager
-      } install && cd ..`,
+      `cd ${process.cwd()}/${appName} && ${reflections.pkgManager} install`,
       (err, stderr, stdout) => {
         const output = stdout;
         if (err) {
           console.log(chalk.red(`\n🐞 ${err} \n`));
         }
-        
-        exec(`cd ${process.cwd()}/${appName} && npm run prettier:server && npm run prettier:client && cd ..`, () => {
-          console.log(output);
-          welcomeMsg(appName, reflections.pkgManager);
-        });
 
+        exec(
+          `cd ${process.cwd()}/${appName} && npm run prettier:server && npm run prettier:client && cd ..`,
+          () => {
+            console.log(output);
+            welcomeMsg(appName, reflections.pkgManager);
+          }
+        );
       }
     );
   }

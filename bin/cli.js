@@ -9,7 +9,7 @@ const { version } = require("./../package.json");
 const questions = require("./questions");
 const templates = require("./template-names");
 const chalk = require("chalk");
-const exec = require("child_process").exec;
+const exec = require("child_process").execSync;
 let error = false;
 let reflections = {};
 
@@ -194,23 +194,15 @@ const init = async appName => {
   if (!error) {
     console.log(chalk.bold(`\nWait untill node_modules install...\n`));
 
-    exec(
-      `cd ${process.cwd()}/${appName} && ${reflections.pkgManager} install`,
-      (err, stderr, stdout) => {
-        const output = stdout;
-        if (err) {
-          console.log(chalk.red(`\n🐞 ${err} \n`));
-        }
+    try {
+      exec(`cd ${process.cwd()}/${appName} && ${reflections.pkgManager} install && npm run prettier:server && npm run prettier:client && git init && cd ..`);
 
-        exec(
-          `cd ${process.cwd()}/${appName} && npm run prettier:server && npm run prettier:client && cd ..`,
-          () => {
-            console.log(output);
-            welcomeMsg(appName, reflections.pkgManager);
-          }
-        );
+      welcomeMsg(appName, reflections.pkgManager)
+    } catch (err) {
+      if (err) {
+        console.log(chalk.red(`\n🐞 ${err} \n`));
       }
-    );
+    }
   }
 };
 
@@ -228,6 +220,12 @@ program
   .description("Make a project") // command description
   // function to execute when command is uses
   .action(init);
+
+// error on unknown commands
+program.on('command:*', function () {
+  console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
+  process.exit(1);
+});
 
 // allow commander to parse `process.argv`
 program.parse(process.argv);

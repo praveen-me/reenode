@@ -1,5 +1,5 @@
 {
-  "name": "renode",
+  "name": "reenode",
   "version": "1.0.0",
   "description": "A cli for creating boilerplate for React ❤️ + Node 🏬. 🚀",
   "main": "bin/cli.js",

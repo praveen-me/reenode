@@ -4,6 +4,7 @@
   <a href="https://twitter.com/am_pra_veen">
     <img alt="Twitter: am_pra_veen" src="https://img.shields.io/twitter/follow/am_pra_veen.svg?style=social" target="_blank" />
   </a>
+  <img src="https://img.shields.io/node/v/reenode">
 </p>
 
 > 🔥 A **CLI** for generating React + Node boilerplates 🚀 with handful configurations. **reenode** helps you to create boilerplates with different configurations such as **react-router**, **redux** and **MongoDB**.
@@ -15,7 +16,7 @@
 ![GIF](/assets/reenode.gif)
 
 ## Install
-
+Node version should be 10 or 10+.
 ```sh
 npm install -g reenode
 yarn global add reenode

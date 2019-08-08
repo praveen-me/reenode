@@ -149,7 +149,7 @@ const welcomeMsg = (appName, pkgManager) => {
   console.log(
     chalk
       .hex("#fdf39f")
-      .bold("\n🕸 With Great Power Comes Great Devonsibility 🚀\n")
+      .bold("\n🕸  With Great Power Comes Great Devonsibility 🚀\n")
   );
 };
 
@@ -169,7 +169,13 @@ const createTemplate = appName => {
     \n--------------------------------------------------- \n`
     )
   );
-  copyRecursively(templatePath, currentDirectoryPath);
+  try {
+    copyRecursively(templatePath, currentDirectoryPath);
+  } catch (e){
+    console.log(chalk.bold.red("Please make sure you are running on Node version: 10 or 10 +"));
+    fs.rmdirSync(currentDirectoryPath);
+    process.exit(1);
+  }
 };
 
 /**

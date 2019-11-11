@@ -16,7 +16,9 @@
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "ejs": "^2.6.2",
-    "inquirer": "^6.5.0"
+    "global": "^4.4.0",
+    "inquirer": "^6.5.0",
+    "reenode": "^1.0.0"
   },
   "bugs": {
     "url": "https://github.com/praveen-me/reenode/issues"
@@ -26,11 +28,11 @@
     "npm": ">=6.0.0"
   },
   "keywords": [
-		"boilerplate",
-		"react",
-		"node",
-		"cli",
-		"webpack",
-		"command-line"
-	]
+    "boilerplate",
+    "react",
+    "node",
+    "cli",
+    "webpack",
+    "command-line"
+  ]
 }

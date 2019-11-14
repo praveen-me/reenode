@@ -13,7 +13,7 @@
 
 ## Demo 🎥
 
-![GIF](https://github.com/praveen-me/reenode/blob/master/assets/reenode.gif)
+![GIF](https://user-images.githubusercontent.com/29889620/68893443-2a30bc00-074b-11ea-90fc-0c73a6f8cb85.gif)
 
 ## Install
 Node version should be 10 or 10+.

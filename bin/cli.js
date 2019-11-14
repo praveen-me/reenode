@@ -26,8 +26,19 @@ const emojiCollection = [
   "✈️"
 ];
 
+/**
+ * Takes directory name and returns a new template path
+ * 
+ * @param {String} directoryName Name of the directory
+ * 
+ * @returns {String} New Template Path Name
+ */
+const changeTemplatePath = (directoryName = 'ern') => {
+  return path.join(__dirname, `../template/${directoryName}`);
+}
+
 // Current working directory
-const templatePath = path.join(__dirname, `../template`);
+let templatePath = changeTemplatePath()
 
 /**
  * Check if the particular file is actual file or a folder
@@ -112,18 +123,20 @@ const copyRecursively = (from, to) => {
       }
     } else {
       const { boilerplate } = reflections;
+      const templateIndex = templates.indexOf(boilerplate);
+      
       // If some how node_modules and dist directory are left there
       if (file.name === "node_modules" || file.name === "dist") return;
 
       if (
-        ((templates.indexOf(boilerplate) === 0 ||
-          templates.indexOf(boilerplate) === 1) &&
+        ((templateIndex === 0 ||
+          templateIndex === 1) &&
           file.name === "store") ||
-        (templates.indexOf(boilerplate) === 0 && file.name === "components") ||
-        (templates.indexOf(boilerplate) !== 3 && file.name === "controllers") ||
-        (templates.indexOf(boilerplate) !== 3 && file.name === "db") ||
-        (templates.indexOf(boilerplate) !== 3 && file.name === "models") ||
-        (templates.indexOf(boilerplate) !== 3 && file.name === "routes")
+        (templateIndex === 0 && file.name === "components") ||
+        (templateIndex !== 3 && file.name === "controllers") ||
+        (templateIndex !== 3 && file.name === "db") ||
+        (templateIndex !== 3 && file.name === "models") ||
+        (templateIndex !== 3 && file.name === "routes")
       )
         return;
 
@@ -169,6 +182,14 @@ const createTemplate = appName => {
     \n--------------------------------------------------- \n`
     )
   );
+
+  const templateIndex = templates.indexOf(reflections.boilerplate);
+
+  if (templateIndex >= 3 ) {
+    console.log("Now it's time to broke 😈");
+    return;
+  }
+
   try {
     copyRecursively(templatePath, currentDirectoryPath);
   } catch (e){
@@ -186,7 +207,7 @@ const createTemplate = appName => {
  * @return {void}
  */
 const init = async appName => {
-  console.log("Welcome to renode.🚀");
+  console.log("Welcome to Reenode.🚀");
 
   const answers = await inquirer.prompt(questions);
 

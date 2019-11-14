@@ -186,7 +186,7 @@ const createTemplate = appName => {
  * @return {void}
  */
 const init = async appName => {
-  console.log("Welcome to renode.🚀");
+  console.log("Welcome to Reenode.🚀");
 
   const answers = await inquirer.prompt(questions);
 

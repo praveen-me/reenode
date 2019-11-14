@@ -24,24 +24,6 @@ app.set('views', path.join(__dirname, './views'));
 // Render index.ejs for all routes
 app.get('*', (req, res) => res.render('index', { mode }));
 
-<% if ( boilerplate === 'React + Redux + React Router + Node + MongoDB' ) {%>
-const bodyParser = require('body-parser');
-const initDB = require('./db/index');
-
-// Essential Middlewares
-app.use(bodyParser.json());
-
-// Initialize the Database
-initDB('sample');
-
-// API Routes
-app.use('/api/v1', require('./routes/api'));
-
-// Navigation Routes
-app.use('/', require('./routes/navigation'));
-<% } %>
-
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

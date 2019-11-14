@@ -194,7 +194,7 @@ const createTemplate = appName => {
     copyRecursively(templatePath, currentDirectoryPath);
   } catch (e){
     console.log(chalk.bold.red("Please make sure you are running on Node version: 10 or 10 +"));
-    fs.rmdirSync(currentDirectoryPath);
+    exec(`rm -rf ${currentDirectoryPath}`);
     process.exit(1);
   }
 };

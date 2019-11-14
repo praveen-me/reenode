@@ -1,38 +1,32 @@
 {
-  "name": "reenode",
-  "version": "1.0.0",
-  "description": "A cli for creating boilerplate for React ❤️ + Node 🏬. 🚀",
-  "main": "bin/cli.js",
-  "bin": {
-    "reenode": "bin/cli.js"
-  },
-  "scripts": {
-    "start": "node ./bin/cli.js"
-  },
-  "author": "",
-  "license": "MIT",
-  "repository": "praveen-me/github",
-  "dependencies": {
-    "chalk": "^2.4.2",
-    "commander": "^2.20.0",
-    "ejs": "^2.6.2",
-    "global": "^4.4.0",
-    "inquirer": "^6.5.0",
-    "reenode": "^1.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/praveen-me/reenode/issues"
-  },
-  "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
-  },
-  "keywords": [
-    "boilerplate",
-    "react",
-    "node",
-    "cli",
-    "webpack",
-    "command-line"
-  ]
+	"name": "reenode",
+	"version": "1.0.0",
+	"description": "A cli for creating boilerplate for React ❤️ + Node 🏬. 🚀",
+	"main": "bin/cli.js",
+	"bin": {
+		"reenode": "bin/cli.js"
+	},
+	"scripts": {
+		"start": "node ./bin/cli.js",
+		"publish": "npm publish"
+	},
+	"author": "",
+	"license": "MIT",
+	"repository": "praveen-me/github",
+	"dependencies": {
+		"chalk": "^2.4.2",
+		"commander": "^2.20.0",
+		"ejs": "^2.6.2",
+		"global": "^4.4.0",
+		"inquirer": "^6.5.0",
+		"reenode": "^1.0.0"
+	},
+	"bugs": {
+		"url": "https://github.com/praveen-me/reenode/issues"
+	},
+	"engines": {
+		"node": ">=10.0.0",
+		"npm": ">=6.0.0"
+	},
+	"keywords": [ "boilerplate", "react", "node", "cli", "webpack", "command-line" ]
 }

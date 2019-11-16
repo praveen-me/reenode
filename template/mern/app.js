@@ -6,6 +6,7 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const expressStaticGzip = require('express-static-gzip');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const indexRouter = require('./server/routes/index');
 const apiRouter = require('./server/routes/api');
@@ -14,6 +15,8 @@ const dbConfig = require('./server/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+require('dotenv').config();
 
 app.use(helmet());
 
@@ -32,6 +35,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./server/modules/passport')(passport);
 
 app.use(
 	'/dist/bundle',

@@ -16,6 +16,10 @@ userScheme.pre('save', function(next) {
 	next();
 });
 
+userScheme.method('verifyPassword', function(password) {
+	return bcrypt.compareSync(password, this.password);
+});
+
 const User = model('User', userScheme);
 
 module.exports = User;

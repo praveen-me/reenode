@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import FormTextInput from './FormTextInput';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loginIn } from '../store/actions/auth.action';
 
-const Signup = () => {
+const Login = ({ history }) => {
 	const isLoginPage = location.href.includes('login');
 	const [userCreds, setUserCreds] = useState({
 		username: '',
 		password: ''
 	});
+
+	const dispatch = useDispatch();
 
 	const handleChange = ({ target: { value, name } }) => {
 		setUserCreds({
@@ -16,10 +20,16 @@ const Signup = () => {
 		});
 	};
 
+	const handleSubmit = event => {
+		event.preventDefault();
+
+		dispatch(loginIn(userCreds)).then(() => history.push('/'));
+	};
+
 	return (
 		<div className='auth'>
 			<h4 className='center'>Welcome Back</h4>
-			<form className='auth__form row center'>
+			<form className='auth__form row center' onSubmit={handleSubmit}>
 				<FormTextInput type='text' placeholder='Username' name='username' handleChange={handleChange} />
 				<FormTextInput placeholder='Password' type='password' name='password' handleChange={handleChange} />
 				<button type='submit' className='button button-primary'>
@@ -33,4 +43,4 @@ const Signup = () => {
 	);
 };
 
-export default Signup;
+export default Login;

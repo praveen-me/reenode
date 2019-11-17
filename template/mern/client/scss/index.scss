@@ -1,9 +1,23 @@
-body {
-  margin: 10x;
+@import './normalize';
+@import './skeleton';
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box !important;
 }
 
-h1 {
-  text-align: center;
-  color: gray;
-  margin-top: 50px;
+.center {
+	text-align: center;
+	margin: 1rem 0;
+}
+
+.auth {
+	&__form {
+		box-sizing: border-box;
+		padding: 1rem;
+		max-width: 400px;
+		width: 100%;
+		margin: 0 auto;
+	}
 }

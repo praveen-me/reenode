@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormTextInput from "./FormTextInput";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { loginIn } from "../store/actions/auth.action";
 import AuthHoc from "./hoc/AuthHoC";
 

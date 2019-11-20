@@ -1,4 +1,4 @@
-import { LOG_IN, VERIFY_USER } from "../types";
+import { LOG_IN, VERIFY_USER, LOG_OUT } from "../types";
 
 const initState = {
   token: localStorage.getItem("token"),
@@ -27,6 +27,15 @@ const rootReducer = (state = initState, action) => {
       return {
         ...state,
         user: payload
+      };
+    }
+
+    case LOG_OUT: {
+      localStorage.removeItem("token");
+
+      return {
+        token: null,
+        user: null
       };
     }
 

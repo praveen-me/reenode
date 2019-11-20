@@ -1,4 +1,4 @@
-import { LOG_IN, VERIFY_USER } from "../types";
+import { LOG_IN, VERIFY_USER, LOG_OUT } from "../types";
 
 const API_VERSION = "/api/v1";
 
@@ -49,3 +49,7 @@ export const verifyUser = () => async dispatch => {
     return Promise.reject(e);
   }
 };
+
+export const logOut = () => ({
+  type: LOG_OUT
+});

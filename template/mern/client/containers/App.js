@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import "../scss/index.scss";
 
-import HomePage from "../components/HomePage";
 import Login from "../components/Login";
+import HomePage from "../components/HomePage";
 import Signup from "../components/Signup";
 
 import AuthRoute from "./AuthRoute";
 import Loader from "./Loader";
 import { verifyUser } from "../store/actions/auth.action";
+
+import Header from "./../components/Header";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +30,7 @@ const App = () => {
     <Loader />
   ) : (
     <BrowserRouter>
+      <Header />
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />

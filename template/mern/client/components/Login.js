@@ -3,6 +3,7 @@ import FormTextInput from "./FormTextInput";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginIn } from "../store/actions/auth.action";
+import AuthHoc from "./hoc/AuthHoC";
 
 const Login = ({ history }) => {
   const isLoginPage = location.href.includes("login");
@@ -55,4 +56,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default Login;
+export default AuthHoc(Login);

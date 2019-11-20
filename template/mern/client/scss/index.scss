@@ -1,23 +1,38 @@
-@import './normalize';
-@import './skeleton';
+@import "./normalize";
+@import "./skeleton";
 
 *,
 *:after,
 *:before {
-	box-sizing: border-box !important;
+  box-sizing: border-box !important;
+}
+
+#root {
+  min-height: 100vh;
+  height: auto;
+  position: relative;
 }
 
 .center {
-	text-align: center;
-	margin: 1rem 0;
+  text-align: center;
+  margin: 1rem 0;
 }
 
 .auth {
-	&__form {
-		box-sizing: border-box;
-		padding: 1rem;
-		max-width: 400px;
-		width: 100%;
-		margin: 0 auto;
-	}
+  &__form {
+    box-sizing: border-box;
+    padding: 1rem;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.loader {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

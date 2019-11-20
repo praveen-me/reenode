@@ -1,16 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, withRouter } from "react-router-dom";
+import { logOut } from "../store/actions/auth.action";
 
-const Header = () => {
+const Header = props => {
   const userData = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    props.history.push("/login");
+  };
 
   return (
     <header className="header">
       <h1>React Node Boilerplate</h1>
       <div className="auth-btns">
         {userData ? (
-          <button>Logout</button>
+          <button onClick={handleLogout}>Logout</button>
         ) : (
           <>
             <NavLink to="/login">Login</NavLink>
@@ -22,4 +29,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

@@ -1,8 +1,7 @@
-import React from 'react';
-import AuthHoc from './hoc/AuthHoC';
+import React from "react";
 
 const HomePage = () => {
-	return <div>Home</div>;
+  return <div>Home</div>;
 };
 
-export default AuthHoc(HomePage);
+export default HomePage;

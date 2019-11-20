@@ -1,27 +1,39 @@
-import { LOG_IN } from '../types';
+import { LOG_IN, VERIFY_USER } from "../types";
 
 const initState = {
-	token: localStorage.getItem('token'),
-	user: null
+  token: localStorage.getItem("token"),
+  user: null
 };
 
 const rootReducer = (state = initState, action) => {
-	switch (action.type) {
-		case LOG_IN: {
-			const { payload } = action;
+  switch (action.type) {
+    case LOG_IN: {
+      const { payload } = action;
 
-			localStorage.setItem('token', token);
+      if (payload.token) {
+        localStorage.setItem("token", payload.token);
+      }
 
-			return {
-				...state,
-				token: payload.token,
-				user: payload.user
-			};
-		}
+      return {
+        ...state,
+        token: payload.token,
+        user: payload.user
+      };
+    }
 
-		default:
-			return state;
-	}
+    case VERIFY_USER: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        user: payload
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
 };
 
 export default rootReducer;

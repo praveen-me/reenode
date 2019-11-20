@@ -2,17 +2,30 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./../Models/User');
 
 module.exports = passport => {
-	console.log('In Passport function');
+	// Serializing the user by
+	passport.serializeUser(function(user, done) {
+		done(null, user.id);
+	});
+
+	passport.deserializeUser(function(id, done) {
+		User.findById(id, function(err, user) {
+			done(err, user);
+		});
+	});
 
 	passport.use(
 		new LocalStrategy((username, password, done) => {
 			User.findOne({ username }, (error, user) => {
 				if (error) return done(error, null);
 
-				if (!user) return done(null, false, { message: 'Incorrect username.' });
+				if (user == null) {
+					done(null, false, { message: 'Incorrect username.' });
+					return;
+				}
 
 				if (!user.verifyPassword(password)) {
-					return done(null, false, { message: 'Incorrect password.' });
+					done(null, false, { message: 'Incorrect password.' });
+					return;
 				}
 
 				const userCopy = { ...user._doc };

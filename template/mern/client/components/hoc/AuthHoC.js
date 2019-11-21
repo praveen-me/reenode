@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 const AuthHoc = Component => {
-  const WrappedComponent = ({ history }) => {
+  const WrappedComponent = props => {
     const token = useSelector(state => state.token);
 
     if (!token) {
-      return <Component />;
+      return <Component {...props} />;
     } else {
       history.push("/");
       return <></>;

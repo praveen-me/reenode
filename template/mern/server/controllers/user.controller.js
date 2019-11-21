@@ -27,7 +27,8 @@ module.exports = {
 
       if (user != null) {
         res.json({
-          msg: "Username already found"
+          msg: "Username already found",
+          err: true
         });
         return;
       }
@@ -35,13 +36,15 @@ module.exports = {
       newUser.save(err => {
         if (err) {
           res.status(500).json({
-            msg: "Something went wrong"
+            msg: "Something went wrong",
+            err: true
           });
           return;
         }
 
         return res.status(200).json({
-          msg: "User Created"
+          msg: "User Created",
+          err: false
         });
       });
     });

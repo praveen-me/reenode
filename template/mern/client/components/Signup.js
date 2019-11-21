@@ -3,7 +3,7 @@ import FormTextInput from "./FormTextInput";
 import { Link } from "react-router-dom";
 import AuthHoc from "./hoc/AuthHoC";
 
-const Signup = () => {
+const Signup = ({ history }) => {
   const isLoginPage = location.href.includes("login");
   const [userCreds, setUserCreds] = useState({
     username: "",
@@ -17,10 +17,30 @@ const Signup = () => {
     });
   };
 
+  const handleSubmit = async event => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(`/api/v1/signup`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(userCreds)
+      });
+
+      const userData = await response.json();
+
+      if (!userData.err) {
+        history.push("/login");
+      }
+    } catch (e) {}
+  };
+
   return (
     <div className="auth">
       <h4 className="center">Register Now</h4>
-      <form className="auth__form row center">
+      <form onSubmit={handleSubmit} className="auth__form row center">
         <FormTextInput
           type="text"
           placeholder="Username"
@@ -47,7 +67,11 @@ const Signup = () => {
             handleChange={handleChange}
           />
         </>
-        <button type="submit" className="button button-primary">
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="button button-primary"
+        >
           {isLoginPage ? "Login" : "Signup"}
         </button>
       </form>

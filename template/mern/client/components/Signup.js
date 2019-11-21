@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormTextInput from "./FormTextInput";
 import { Link } from "react-router-dom";
-import AuthHoc from "./hoc/AuthHoC";
 
 const Signup = ({ history }) => {
   const isLoginPage = location.href.includes("login");
@@ -84,4 +83,4 @@ const Signup = ({ history }) => {
   );
 };
 
-export default AuthHoc(Signup);
+export default Signup;

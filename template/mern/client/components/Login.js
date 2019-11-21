@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import FormTextInput from "./FormTextInput";
-import { useDispatch } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import { loginIn } from "../store/actions/auth.action";
 import AuthHoc from "./hoc/AuthHoC";
 
 const Login = ({ history }) => {
+  const token = useSelector(state => state.token);
   const isLoginPage = location.href.includes("login");
   const [userCreds, setUserCreds] = useState({
     username: "",
@@ -24,8 +25,10 @@ const Login = ({ history }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    dispatch(loginIn(userCreds)).then(() => history.push("/"));
+    dispatch(loginIn(userCreds));
   };
+
+  if (token) return <Redirect to="/" />;
 
   return (
     <div className="auth">
@@ -56,4 +59,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default AuthHoc(Login);
+export default Login;

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Baskervville&display=swap");
 @import "./normalize";
 @import "./skeleton";
 
@@ -12,6 +13,7 @@
   height: auto;
   position: relative;
   padding: 2rem;
+  font-family: "Baskervville", serif;
 }
 
 .center {
@@ -43,12 +45,13 @@
   * {
     margin: 0;
   }
+  box-shadow: 5px 5px 13px -2px #ddd;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 1rem 0;
+  padding: 1rem;
   h1 {
-    font-size: 36px;
+    font-size: 28px;
   }
 
   .auth-btns {
@@ -60,5 +63,21 @@
       text-decoration: none;
       font-size: 20px;
     }
+  }
+}
+
+// Main Section
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  flex-direction: column;
+  height: auto;
+  margin: 2rem 0;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 300;
   }
 }

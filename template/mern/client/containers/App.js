@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import "../scss/index.scss";
 
-import Login from "../components/Login";
-import HomePage from "../components/HomePage";
-import Signup from "../components/Signup";
+const Login = lazy(() => import("../components/Login"));
+const HomePage = lazy(() => import("../components/HomePage"));
+const Signup = lazy(() => import("../components/Signup"));
 
 import AuthRoute from "./AuthRoute";
 import Loader from "./Loader";
@@ -32,9 +32,11 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <AuthRoute exact path="/" component={HomePage} />
+        <Suspense fallback={<Loader />}>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <AuthRoute exact path="/" component={HomePage} />
+        </Suspense>
       </Switch>
     </BrowserRouter>
   );

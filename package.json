@@ -14,7 +14,7 @@
 	"license": "MIT",
 	"repository": "praveen-me/github",
 	"dependencies": {
-		"bcrypt": "^3.0.6",
+		"bcrypt": "^5.0.0",
 		"chalk": "^2.4.2",
 		"commander": "^2.20.0",
 		"dotenv": "^8.2.0",
